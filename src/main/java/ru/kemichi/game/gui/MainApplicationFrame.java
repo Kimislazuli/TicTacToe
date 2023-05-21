@@ -1,6 +1,11 @@
 package ru.kemichi.game.gui;
 
-import ru.kemichi.game.gui.windows.*;
+import ru.kemichi.game.gui.windows.abstractions.AbstractWindow;
+import ru.kemichi.game.gui.windows.game.GameWindow;
+import ru.kemichi.game.gui.windows.game.TicTacToe;
+import ru.kemichi.game.gui.windows.game_state.GameStateWindow;
+import ru.kemichi.game.gui.windows.stat_window.StatWindow;
+import ru.kemichi.game.gui.windows.turns_window.TurnsWindow;
 
 import javax.swing.*;
 
@@ -21,11 +26,13 @@ public class MainApplicationFrame extends JFrame {
 
         setContentPane(desktopPane);
 
+        TicTacToe ticTacToe = new TicTacToe(new Dimension(850, 850));
+
         loadWindows(
-                new GameWindow(bundle),
-                new TurnsWindow(bundle),
-                new GameStateWindow(bundle),
-                new StatWindow(bundle)
+                new GameWindow(bundle, ticTacToe),
+                new TurnsWindow(bundle, ticTacToe),
+                new GameStateWindow(bundle, ticTacToe),
+                new StatWindow(bundle, ticTacToe)
         );
 
         setJMenuBar(generateMenuBar());
