@@ -1,21 +1,22 @@
-package ru.kemichi.game.gui.windows;
-import ru.kemichi.game.gui.TicTacToe;
+package ru.kemichi.game.gui.windows.game;
+import ru.kemichi.game.gui.windows.abstractions.AbstractWindow;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
 public class GameWindow extends AbstractWindow {
-    public GameWindow(ResourceBundle bundle) {
+    private final TicTacToe ticTacToe;
+    public GameWindow(ResourceBundle bundle, TicTacToe ticTacToe) {
         super(bundle.getString("gameWindowHeader"));
-        Dimension dimension = new Dimension(850, 850);
-        Point point = new Point(350, 50);
-        this.setLocation(point);
-        TicTacToe ticTacToe = new TicTacToe(this.getSize());
+        this.ticTacToe = ticTacToe;
+        Dimension dimension = ticTacToe.getDimension();
         TicTacToeVisualizer visualizer = new TicTacToeVisualizer(ticTacToe);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(visualizer, BorderLayout.CENTER);
         getContentPane().add(panel);
+
+        this.setLocation(350, 50);
         pack();
         this.setSize(dimension);
     }
