@@ -1,4 +1,4 @@
-package ru.kemichi.game.gui.windows;
+package ru.kemichi.game.gui.windows.abstractions;
 
 import javax.swing.*;
 
